@@ -23,6 +23,14 @@ Além disso, é necessário que a solução esteja integrada ao banco de dados, 
 - Service Discovery - Netflix Eureka;
 - API Gateway - Spring Cloud Gateway.
 
+# BOAS PRÁTICAS E DESIGN PATTERNS UTILIZADOS
+- Data Transfer Objects - DTO;
+- Services;
+- Repositories;
+- MVC - Model, View e Controller;
+- Global Exception Handler;
+- Exceptions customizadas de acordo com as regras de negócio.
+
 # MER
 ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/5e487da1-c3e1-4c64-af08-ff58bb646ace)
 
@@ -32,14 +40,6 @@ Além disso, é necessário que a solução esteja integrada ao banco de dados, 
 # INTEGRAÇÃO - SERVIDOR SMTP
 Para de fato atender a ideia de “notificação aos moradores” do tema escolhido, o endpoint “disparar notificações” faz uso de um servidor de SMTP gratuito chamado MailTrap. Ao acionar o endpoint passando o id de uma agenda aberta, um email será enviado para cada registro da tabela T_NOTIFICACAO referente ao id da agenda, em seguida o registro é excluído. Como boa prática, o método de envio de e-mail foi marcado como @Async.
 ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/ed3191df-250e-4404-aa41-117dbef348ae)
-
-# BOAS PRÁTICAS E DESIGN PATTERNS UTILIZADOS
-- Data Transfer Objects - DTO;
-- Services;
-- Repositories;
-- MVC - Model, View e Controller;
-- Global Exception Handler;
-- Exceptions customizadas de acordo com as regras de negócio.
   
 # DETALHES DE IMPLEMENTAÇÃO - SPRING SECURITY
 - O serviço escolhido para implementação do Spring Security foi o API Gateway (visto que é ele quem intercepta todas as requisições);
