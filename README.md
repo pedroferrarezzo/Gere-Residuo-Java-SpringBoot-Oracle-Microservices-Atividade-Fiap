@@ -44,7 +44,8 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
 - <p>Tempo médio para inicialização de toda a API usando o docker-compose.yml (teste feito em uma VM no Azure);</p>
 
   ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/bd05c9da-6d94-4edd-bf3c-b553f153c4cf)
-  
+
+    - VM utilizada para os testes: Standard D2s v3 (2 vcpus, 8 GiB memory) - Ubuntu 20.04.6 LTS;
     - oracledb – uma validação de “healthy” foi aplicada utilizando um script shell disponibilizado pela própria imagem para validar que de fato o banco está ON;
     - <p>oracleclient – imagem com o sqlplus instalado, utilizada para validar se as tabelas T_MOTORISTA, T_CAMINHAO, T_AGENDA e T_MORADOR já foram efetivamente criadas pelo flyway, nos microsserviços morador.bairro.ms e motorista.caminhao.ms. Isto é necessário          pois o flyway no microsserviço agenda.notificacao.ms irá criar chaves estrangeiras com essas tabelas – que inclusive estão em schemas diferentes. Para tal, verificar se o script abaixo possui permissões de execução o suficiente para que o docker engine possa       usá-lo;</p>
     
