@@ -18,5 +18,8 @@ Além disso, é necessário que a solução esteja integrada ao banco de dados, 
 # VISÃO GERAL - ENDPOINTS E MICROSSERVIÇOS
 ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/d32f2da3-99e9-4dbe-a69c-2656e048a2f5)
 
+# ANATOMIA DE UM TOKEN JWT GERADO
+![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/4bb39987-ca60-4ad2-93d5-e8fec98d7db0)
+
 # SECURITY CHAIN
 ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/e2a83ab7-29e4-4bed-a184-b2ab5a269e6c)
