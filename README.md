@@ -33,6 +33,14 @@ Além disso, é necessário que a solução esteja integrada ao banco de dados, 
 Para de fato atender a ideia de “notificação aos moradores” do tema escolhido, o endpoint “disparar notificações” faz uso de um servidor de SMTP gratuito chamado MailTrap. Ao acionar o endpoint passando o id de uma agenda aberta, um email será enviado para cada registro da tabela T_NOTIFICACAO referente ao id da agenda, em seguida o registro é excluído. Como boa prática, o método de envio de e-mail foi marcado como @Async.
 ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/ed3191df-250e-4404-aa41-117dbef348ae)
 
+# BOAS PRÁTICAS E DESIGN PATTERNS UTILIZADOS
+- Data Transfer Objects - DTO;
+- Services;
+- Repositories;
+- MVC - Model, View e Controller;
+- Global Exception Handler;
+- Exceptions customizadas de acordo com as regras de negócio.
+  
 # DETALHES DE IMPLEMENTAÇÃO - SPRING SECURITY
 - O serviço escolhido para implementação do Spring Security foi o API Gateway (visto que é ele quem intercepta todas as requisições);
 - Ao decorrer da fase, foi ensinado a implementação do Spring Security com Spring Web MVC. Levando em consideração que o API Gateway utiliza Spring WebFlux, o desenvolvimento se deu baseado em artigos e documentações oficias (Sujeito a melhorias);
