@@ -25,11 +25,15 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
 # DETALHES DE IMPLEMENTAÇÃO - SPRING SECURITY
 - O serviço escolhido para implementação do Spring Security foi o API Gateway (visto que é ele quem intercepta todas as requisições);
 - Ao decorrer da fase, foi ensinado a implementação do Spring Security com Spring Web MVC. Levando em consideração que o API Gateway utiliza Spring WebFlux, o desenvolvimento se deu baseado em artigos e documentações oficias (Sujeito a melhorias);
-- Lógica da Security Chain;
+- <p>Lógica da Security Chain;</p>
+
   ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/e2a83ab7-29e4-4bed-a184-b2ab5a269e6c)
-- Anatomia de um Token JWT gerado;
+  
+- <p>Anatomia de um Token JWT gerado;</p>
+
   ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/4bb39987-ca60-4ad2-93d5-e8fec98d7db0)
-- •	A secret JWT deve ter mais de 256 bits, caso contrário, uma exception será lançada.
+  
+- A secret JWT deve ter mais de 256 bits, caso contrário, uma exception será lançada.
 
 # DETALHES DE IMPLEMENTAÇÃO - DOCKER
 - A API foi totalmente conteinerizada:
@@ -37,14 +41,19 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
   - Aplicando o conceito de variáveis de ambiente (para a secret JWT);
   - Construindo todas as imagens e subindo-as para um repositório no Docker Hub (ferrarezzodev/fiap - https://hub.docker.com/repository/docker/ferrarezzodev/fiap/general);
   - Construindo um docker-compose.yml para a fácil inicialização de toda a API, consumindo as imagens dos microsserviços hospedadas no Docker Hub.
-- Tempo médio para inicialização de toda a API usando o docker-compose.yml (teste feito em uma VM no Azure);
+- <p>Tempo médio para inicialização de toda a API usando o docker-compose.yml (teste feito em uma VM no Azure);</p>
+
   ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/bd05c9da-6d94-4edd-bf3c-b553f153c4cf)
+  
     - oracledb – uma validação de “healthy” foi aplicada utilizando um script shell disponibilizado pela própria imagem para validar que de fato o banco está ON;
-    - oracleclient – imagem com o sqlplus instalado, utilizada para validar se as tabelas T_MOTORISTA, T_CAMINHAO, T_AGENDA e T_MORADOR já foram efetivamente criadas pelo flyway, nos microsserviços morador.bairro.ms e motorista.caminhao.ms. Isto é necessário pois        o flyway no microsserviço agenda.notificacao.ms irá criar chaves estrangeiras com essas tabelas – que inclusive estão em schemas diferentes. Para tal, verificar se o script abaixo possui permissões de execução o suficiente para que o docker engine possa usá-       lo;
+    - <p>oracleclient – imagem com o sqlplus instalado, utilizada para validar se as tabelas T_MOTORISTA, T_CAMINHAO, T_AGENDA e T_MORADOR já foram efetivamente criadas pelo flyway, nos microsserviços morador.bairro.ms e motorista.caminhao.ms. Isto é necessário          pois o flyway no microsserviço agenda.notificacao.ms irá criar chaves estrangeiras com essas tabelas – que inclusive estão em schemas diferentes. Para tal, verificar se o script abaixo possui permissões de execução o suficiente para que o docker engine possa       usá-lo;</p>
+    
       ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/934caa35-bafd-46ef-a5b8-090755a6dc8e)
+      
     - Uma rede exclusiva foi criada para todas as APIs;
     - Um volume foi criado para persistência do diretório ORADATA (Oracle).
-- Mapeamento de portas:
+- <p>Mapeamento de portas;</p>
+
   ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/ec6182af-30f8-49e7-9fda-95e8f46293a6)
 
 - Todas as imagens necessárias já se encontram no Docker Hub, mas caso seja necessário buildar localmente, o seguinte comando deve ser executado dentro do diretório “docker/dockerfiles” (gerar os .jar e colocar dentro do diretório “docker/jar”): docker buildx build -f docker_file -t account_name/repository:tagname .
