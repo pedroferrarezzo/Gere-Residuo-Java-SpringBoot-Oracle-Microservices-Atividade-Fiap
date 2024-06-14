@@ -9,7 +9,14 @@
 - DELETE /agendamento-de-coleta/{id}: Para cancelar um agendamento de coleta.
 
 Com o seu aprofundamento nos conceitos de desenvolvimento com Java e Spring Boot, é mandatório que você sugira e implemente mais itens na entrega, indo além dos endpoints. Desde a configuração inicial até técnicas avançadas de validação e tratamento de exceções, é essencial aplicar os requisitos de segurança nos endpoints pertinentes utilizando o Spring Security.
+
 Além disso, é necessário que a solução esteja integrada ao banco de dados, especialmente no caso do Oracle, e que o conceito de migrações seja implementado para garantir uma gestão eficiente e escalável do esquema de banco de dados ao longo do tempo. Explore também a integração com contêineres Docker, entregando as configurações para execução do projeto estejam devidamente documentadas e prontas para implantação em ambientes diversos."
 
-
 # MER
+![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/5e487da1-c3e1-4c64-af08-ff58bb646ace)
+
+# VISÃO GERAL - ENDPOINTS E MICROSSERVIÇOS
+![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/d32f2da3-99e9-4dbe-a69c-2656e048a2f5)
+
+# SECURITY CHAIN
+![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/e2a83ab7-29e4-4bed-a184-b2ab5a269e6c)
