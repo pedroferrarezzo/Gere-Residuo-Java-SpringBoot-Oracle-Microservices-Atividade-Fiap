@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+
+  oracledb:
+    image: gvenzl/oracle-xe
+    container_name: oracledb
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+      - ./scripts-sql:/container-entrypoint-initdb.d
+    networks:
+      - gere-residuo-network
+
+    environment:
+      - ORACLE_PASSWORD=171204
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 5s
+      timeout: 5s
+      retries: 50
+
+  service.discovery:
+    image: ferrarezzodev/fiap:service.discovery
+    container_name: eureka
+    ports:
+      - "5050:5050"
+    networks:
+      - gere-residuo-network
+    depends_on:
+      oracledb:
+        condition: service_healthy
+
+  api.gateway:
+    image: ferrarezzodev/fiap:api.gateway
+    container_name: api.gateway
+    ports:
+      - "5051:5051"
+    networks:
+      - gere-residuo-network
+    environment:
+      - jwtsecret=EstaChaveDeveTerMaisQue256BitsDeTamanho
+    depends_on:
+      - service.discovery
+    
+  oracleclient:
+    image: lonesurvivor84/instantclient:18
+    container_name: oracleclient
+    networks:
+      - gere-residuo-network
+    depends_on:
+      - api.gateway
+    volumes:
+    - ./healthcheck-tables:/healthcheck-tables
+    healthcheck:
+      test: ["CMD", "/healthcheck-tables/healthcheck_tables.sh"]
+      interval: 5s
+      timeout: 5s
+      retries: 50
+
+  motorista.caminhao.ms:
+    image: ferrarezzodev/fiap:motorista.caminhao.ms
+    container_name: motorista.caminhao.ms
+    networks:
+      - gere-residuo-network
+    depends_on:
+      - api.gateway
+
+  morador.bairro.ms:
+    image: ferrarezzodev/fiap:morador.bairro.ms
+    container_name: morador.bairro.ms
+    networks:
+      - gere-residuo-network
+    depends_on:
+      - api.gateway
+
+  agenda.notificacao.ms:
+    image: ferrarezzodev/fiap:agenda.notificacao.ms
+    container_name: agenda.notificacao.ms
+    networks:
+      - gere-residuo-network
+    depends_on:
+      oracleclient:
+        condition: service_healthy
+     
+
+networks:
+  gere-residuo-network:
+
+volumes:
+  oracle_data:
+    driver: local
+

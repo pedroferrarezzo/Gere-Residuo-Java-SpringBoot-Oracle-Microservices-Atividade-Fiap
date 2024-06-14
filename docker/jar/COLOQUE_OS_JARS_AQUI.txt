@@ -1,0 +1,5 @@
+agenda.notificacao.ms.jar
+motorista.caminhao.ms.jar
+api.gateway.jar
+morador.bairro.ms.jar
+service.discovery.jar
