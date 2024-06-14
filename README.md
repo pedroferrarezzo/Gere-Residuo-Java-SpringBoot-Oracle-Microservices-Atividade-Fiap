@@ -12,6 +12,17 @@ Com o seu aprofundamento nos conceitos de desenvolvimento com Java e Spring Boot
 
 Além disso, é necessário que a solução esteja integrada ao banco de dados, especialmente no caso do Oracle, e que o conceito de migrações seja implementado para garantir uma gestão eficiente e escalável do esquema de banco de dados ao longo do tempo. Explore também a integração com contêineres Docker, entregando as configurações para execução do projeto estejam devidamente documentadas e prontas para implantação em ambientes diversos."
 
+# TECNOLOGIAS UTILIZADAS
+- Java 21;
+- Spring Framework;
+  - Spring Data JPA;
+  - Spring Web MVC;
+  - Spring Security.
+- Hibernate ORM;
+- Maven;
+- Service Discovery - Netflix Eureka;
+- API Gateway - Spring Cloud Gateway.
+
 # MER
 ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/5e487da1-c3e1-4c64-af08-ff58bb646ace)
 
