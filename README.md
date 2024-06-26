@@ -79,7 +79,7 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
 - Todas as imagens necessárias já se encontram no Docker Hub, mas caso seja necessário buildar localmente, o seguinte comando deve ser executado dentro do diretório “docker/dockerfiles” (gerar os .jar e colocar dentro do diretório “docker/jar”): docker buildx build -f docker_file -t account_name/repository:tagname .
 - Todos os microsserviços se conectam ao banco de dados e ao eureka via nome de domínio (respectivamente “oracledb” e “eureca”). Estes nomes são resolvidos pelo serviço de DNS interno do docker.
 
-# INFORMAÇÔES FINAIS
+# INFORMAÇÕES FINAIS
 - Todos os arquivos utilizados para conteinerizar a API se encontram na pasta “docker”;
 - Todo o código fonte da API se encontra na pasta “java”;
 - Os arquivos SQL DDL utilizados pelo flyway se encontram nos respectivos diretórios de cada projeto de cada microsserviço (db.migration).
