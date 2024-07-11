@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: oracle-statefulset
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: oracle-template
+      labels:
+        statefulset: oracle
+    spec:
+      containers:
+        - name: oracle-sts-container
+          image: gvenzl/oracle-xe
+          ports:
+            - containerPort: 1521
+          envFrom:
+            - configMapRef:
+                name: oracle-sts-configmap
+          livenessProbe:
+            tcpSocket:
+              port: 1521
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 1521
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          volumeMounts:
+            - name: oradata
+              mountPath: /opt/oracle/oradata
+            - name: init-scripts
+              mountPath: /container-entrypoint-initdb.d
+      # Conteiners em um Pod Kubernetes que sao executados antes dos conteiners principais do Pod.
+      initContainers:
+        - name: copy-startup-sql-container
+          image: busybox
+          command: ['sh', '-c', 'wget -O /tmp/init-script.sql https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Microservices-Atividade-Fiap/blob/feat-configuracao_actuator-correcao_hostnames_deploy_Kubernetes/docker/scripts-sql/init-script.sql && cp /tmp/init-script.sql /container-entrypoint-initdb.d/']
+          volumeMounts:
+            - name: init-scripts
+              mountPath: /container-entrypoint-initdb.d
+      volumes:
+        - name: oradata
+          persistentVolumeClaim:
+            claimName: oradata-pvc
+        # Volume temporário que é criado quando um Pod é iniciado e excluído quando o Pod é excluído
+        - name: init-scripts
+          emptyDir: {}
+  selector:
+    matchLabels:
+      statefulset: oracle
+  serviceName: oracle-sts
