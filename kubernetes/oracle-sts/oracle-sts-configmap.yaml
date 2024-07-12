@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: oracle-sts-configmap
-data:
-  ORACLE_PASSWORD: "171204"

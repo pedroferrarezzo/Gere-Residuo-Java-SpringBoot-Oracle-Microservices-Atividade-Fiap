@@ -15,9 +15,12 @@ spec:
           image: gvenzl/oracle-xe
           ports:
             - containerPort: 1521
-          envFrom:
-            - configMapRef:
-                name: oracle-sts-configmap
+          env:
+            - name: ORACLE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: oracle-sts-secret
+                  key: ORACLE_PASSWORD
           livenessProbe:
             tcpSocket:
               port: 1521
