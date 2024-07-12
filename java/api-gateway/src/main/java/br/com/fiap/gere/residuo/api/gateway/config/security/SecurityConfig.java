@@ -44,6 +44,7 @@ public class SecurityConfig {
                         .pathMatchers(HttpMethod.PUT,"/atualizarUsuario").hasAuthority("ADMIN")
                         .pathMatchers(HttpMethod.GET,"/listarUsuarios").hasAuthority("ADMIN")
                         .pathMatchers(HttpMethod.DELETE,"/excluirUsuario").hasAuthority("ADMIN")
+                        .pathMatchers(HttpMethod.GET,"/actuator/health").permitAll()
 
                         .pathMatchers(HttpMethod.GET,"/morador.bairro.ms/**").hasAnyAuthority("USER", "OPERATOR", "ADMIN")
                         .pathMatchers(HttpMethod.GET,"/motorista.caminhao.ms/**").hasAnyAuthority("USER", "OPERATOR", "ADMIN")
