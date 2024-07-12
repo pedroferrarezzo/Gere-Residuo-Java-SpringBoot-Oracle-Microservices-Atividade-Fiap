@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway-deployment
+spec:
+  replicas: 5
+  template:
+    metadata:
+      name: api-gateway-template
+      labels:
+        deployment: api.gateway
+    spec:
+      containers:
+        - name: api-gateway-container
+          image: ferrarezzodev/gere-residuo-kubernetes:api_gateway
+          ports:
+            - containerPort: 5051
+          env:
+            - name: jwtsecret
+              valueFrom:
+                secretKeyRef:
+                  name: api-gateway-secret
+                  key: jwtsecret
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 5051
+            periodSeconds: 15
+            failureThreshold: 3
+            initialDelaySeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 5051
+            periodSeconds: 15
+            failureThreshold: 3
+            initialDelaySeconds: 30
+          resources:
+            requests:
+              cpu: 75m
+  selector:
+    matchLabels:
+      deployment: api.gateway
