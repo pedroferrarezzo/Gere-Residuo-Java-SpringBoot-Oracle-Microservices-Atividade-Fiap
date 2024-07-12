@@ -12,10 +12,26 @@ spec:
     spec:
       containers:
         - name: morador-bairro-ms-container
-          image: ferrarezzodev/gere-residuo-kubernetes:morador.bairro.ms.fix
+          image: ferrarezzodev/gere-residuo-kubernetes:morador.bairro.ms.fix.stable
           # Porta atribuida dinamicamente pelo Eureka
 #          ports:
 #            - containerPort: 5050
+          env:
+            - name: ORACLE_DATASOURCE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: morador-bairro-ms-secret
+                  key: ORACLE_DATASOURCE_URL
+            - name: ORACLE_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: morador-bairro-ms-secret
+                  key: ORACLE_DATASOURCE_USERNAME
+            - name: ORACLE_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: morador-bairro-ms-secret
+                  key: ORACLE_DATASOURCE_PASSWORD
           livenessProbe:
             httpGet:
               path: /actuator/health

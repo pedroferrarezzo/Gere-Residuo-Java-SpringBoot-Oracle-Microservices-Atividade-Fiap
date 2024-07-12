@@ -12,10 +12,26 @@ spec:
     spec:
       containers:
         - name: motorista-caminhao-ms-container
-          image: ferrarezzodev/gere-residuo-kubernetes:motorista.caminhao.ms.fix
+          image: ferrarezzodev/gere-residuo-kubernetes:motorista.caminhao.ms.fix.stable
           # Porta atribuida dinamicamente pelo Eureka
 #          ports:
 #            - containerPort: 5050
+          env:
+            - name: ORACLE_DATASOURCE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: motorista-caminhao-ms-secret
+                  key: ORACLE_DATASOURCE_URL
+            - name: ORACLE_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: motorista-caminhao-ms-secret
+                  key: ORACLE_DATASOURCE_USERNAME
+            - name: ORACLE_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: motorista-caminhao-ms-secret
+                  key: ORACLE_DATASOURCE_PASSWORD
           livenessProbe:
             httpGet:
               path: /actuator/health
