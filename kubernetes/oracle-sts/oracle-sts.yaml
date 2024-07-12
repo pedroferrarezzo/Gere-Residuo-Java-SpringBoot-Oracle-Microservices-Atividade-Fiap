@@ -35,9 +35,23 @@ spec:
               mountPath: /container-entrypoint-initdb.d
       # Conteiners em um Pod Kubernetes que sao executados antes dos conteiners principais do Pod.
       initContainers:
+        # Define as permissões necessárias no ponto de montagem "/opt/oracle/oradata" (o mesmo usado pelo container oracle-sts-container), para que as operações
+        # de construção do conteiner (criação de arquivos e afins) neste diretório possam acontecer. 
+        # Isto é necessário por que o volume será criado com proprietário e permissões root, e o usuário e grupo utilizado pelo container é oracle:oinstall.
+        # Em outras palavras, no sistema de arquivos do disco criado no azure, o diretório possui proprietário e permissões root, o ponto de montagem
+        # "/opt/oracle/oradata" quando criado no container herdará essas permissões, entretanto, as operações de construção do container serão executadas
+        # com usuário oracle.
+        - name: volume-permissions
+          image: busybox
+          command: ["sh", "-c", "chmod -R 777 /opt/oracle/oradata"]
+          volumeMounts:
+            - name: oradata
+              mountPath: /opt/oracle/oradata
+        # Executa a operação de cópia de um script DDL SQL para o diretório "/container-entrypoint-initdb.d" - onde scripts sql de inicialização podem ser especificados.
+        # Este volume também está montado no container "oracle-sts-container"
         - name: copy-startup-sql-container
           image: busybox
-          command: ['sh', '-c', 'wget -O /tmp/init-script.sql https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Microservices-Atividade-Fiap/blob/feat-configuracao_actuator-correcao_hostnames_deploy_Kubernetes/docker/scripts-sql/init-script.sql && cp /tmp/init-script.sql /container-entrypoint-initdb.d/']
+          command: ['sh', '-c', 'wget -O /tmp/init-script.sql https://raw.githubusercontent.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Microservices-Atividade-Fiap/feat-deploy_kubernetes/docker/scripts-sql/init-script.sql && cp /tmp/init-script.sql /container-entrypoint-initdb.d/']
           volumeMounts:
             - name: init-scripts
               mountPath: /container-entrypoint-initdb.d
