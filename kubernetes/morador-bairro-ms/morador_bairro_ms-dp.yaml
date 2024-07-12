@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: morador-bairro-ms-container
-          image: ferrarezzodev/gere-residuo-kubernetes:morador.bairro.ms
+          image: ferrarezzodev/gere-residuo-kubernetes:morador.bairro.ms.fix
           # Porta atribuida dinamicamente pelo Eureka
 #          ports:
 #            - containerPort: 5050
