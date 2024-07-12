@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: api-gateway-container
-          image: ferrarezzodev/gere-residuo-kubernetes:api_gateway
+          image: ferrarezzodev/gere-residuo-kubernetes:api.gateway
           ports:
             - containerPort: 5051
           env:

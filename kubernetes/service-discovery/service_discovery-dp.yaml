@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: service-discovery-container
-          image: ferrarezzodev/gere-residuo-kubernetes:service_discovery
+          image: ferrarezzodev/gere-residuo-kubernetes:service.discovery
           ports:
             - containerPort: 5050
           livenessProbe:

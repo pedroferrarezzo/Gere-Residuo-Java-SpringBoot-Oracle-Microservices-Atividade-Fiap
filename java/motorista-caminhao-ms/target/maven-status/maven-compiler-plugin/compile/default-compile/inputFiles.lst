@@ -1,19 +1,19 @@
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\exception\MotoristaNaoEncontradoException.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\model\Motorista.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\controller\MotoristaController.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\model\Caminhao.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\controller\CaminhaoController.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\service\MotoristaService.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\advice\ApplicationExceptionHandler.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\caminhao\CaminhaoAtualizarDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\repository\MotoristaRepository.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\motorista\MotoristaCadastroDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\repository\CaminhaoRepository.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\motorista\MotoristaDispExibicaoDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\service\CaminhaoService.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\caminhao\CaminhaoDispExibicaoDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\caminhao\CaminhaoCadastroDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\motorista\MotoristaAtualizarDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\exception\CaminhaoNaoEncontradoException.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\MsApplication.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\model\StatusDisponivel.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\model\StatusDisponivel.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\caminhao\CaminhaoCadastroDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\MsApplication.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\service\MotoristaService.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\controller\CaminhaoController.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\caminhao\CaminhaoDispExibicaoDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\exception\CaminhaoNaoEncontradoException.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\motorista\MotoristaCadastroDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\model\Caminhao.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\advice\ApplicationExceptionHandler.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\model\Motorista.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\controller\MotoristaController.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\exception\MotoristaNaoEncontradoException.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\motorista\MotoristaDispExibicaoDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\motorista\MotoristaAtualizarDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\dto\caminhao\CaminhaoAtualizarDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\repository\CaminhaoRepository.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\repository\MotoristaRepository.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\motorista-caminhao-ms\src\main\java\br\com\fiap\gere\residuo\motorista\caminhao\ms\service\CaminhaoService.java
