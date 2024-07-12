@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: morador-bairro-ms-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: morador-bairro-ms-template
+      labels:
+        deployment: morador.bairro.ms
+    spec:
+      containers:
+        - name: morador-bairro-ms-container
+          image: ferrarezzodev/gere-residuo-kubernetes:morador.bairro.ms
+          # Porta atribuida dinamicamente pelo Eureka
+#          ports:
+#            - containerPort: 5050
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 20
+          resources:
+            requests:
+              cpu: 75m
+  selector:
+    matchLabels:
+      deployment: morador.bairro.ms
