@@ -46,13 +46,13 @@ public class SecurityConfig {
                         .pathMatchers(HttpMethod.DELETE,"/excluirUsuario").hasAuthority("ADMIN")
                         .pathMatchers(HttpMethod.GET,"/actuator/health").permitAll()
 
-                        .pathMatchers(HttpMethod.GET,"/morador.bairro.ms/**").hasAnyAuthority("USER", "OPERATOR", "ADMIN")
-                        .pathMatchers(HttpMethod.GET,"/motorista.caminhao.ms/**").hasAnyAuthority("USER", "OPERATOR", "ADMIN")
-                        .pathMatchers(HttpMethod.GET,"/agenda.notificacao.ms/**").hasAnyAuthority("USER", "OPERATOR", "ADMIN")
+                        .pathMatchers(HttpMethod.GET,"/morador.bairro.ms/**").permitAll()
+                        .pathMatchers(HttpMethod.GET,"/motorista.caminhao.ms/**").permitAll()
+                        .pathMatchers(HttpMethod.GET,"/agenda.notificacao.ms/**").permitAll()
 
-                        .pathMatchers(HttpMethod.POST,"/morador.bairro.ms/**").hasAnyAuthority("OPERATOR", "ADMIN")
-                        .pathMatchers(HttpMethod.POST,"/motorista.caminhao.ms/**").hasAnyAuthority("OPERATOR", "ADMIN")
-                        .pathMatchers(HttpMethod.POST,"/agenda.notificacao.ms/**").hasAnyAuthority("OPERATOR", "ADMIN")
+                        .pathMatchers(HttpMethod.POST,"/morador.bairro.ms/**").hasAnyAuthority("USER","OPERATOR", "ADMIN")
+                        .pathMatchers(HttpMethod.POST,"/motorista.caminhao.ms/**").hasAnyAuthority("USER","OPERATOR", "ADMIN")
+                        .pathMatchers(HttpMethod.POST,"/agenda.notificacao.ms/**").hasAnyAuthority("USER","OPERATOR", "ADMIN")
 
                         .pathMatchers(HttpMethod.PUT,"/morador.bairro.ms/**").hasAnyAuthority("OPERATOR", "ADMIN")
                         .pathMatchers(HttpMethod.PUT,"/motorista.caminhao.ms/**").hasAnyAuthority("OPERATOR", "ADMIN")
