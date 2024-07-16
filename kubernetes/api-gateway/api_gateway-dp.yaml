@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway-deployment
+spec:
+  replicas: 5
+  template:
+    metadata:
+      name: api-gateway-template
+      labels:
+        deployment: api.gateway
+    spec:
+      containers:
+        - name: api-gateway-container
+          image: ferrarezzodev/gere-residuo-kubernetes:api.gateway.fix.stable.cdn
+          ports:
+            - containerPort: 5051
+          env:
+            - name: jwtsecret
+              valueFrom:
+                secretKeyRef:
+                  name: api-gateway-secret
+                  key: jwtsecret
+            - name: SPRING_SECURITY_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: api-gateway-secret
+                  key: SPRING_SECURITY_USERNAME
+            - name: SPRING_SECURITY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: api-gateway-secret
+                  key: SPRING_SECURITY_PASSWORD
+            - name: ORACLE_DATASOURCE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: api-gateway-secret
+                  key: ORACLE_DATASOURCE_URL
+            - name: ORACLE_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: api-gateway-secret
+                  key: ORACLE_DATASOURCE_USERNAME
+            - name: ORACLE_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: api-gateway-secret
+                  key: ORACLE_DATASOURCE_PASSWORD
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 5051
+            periodSeconds: 15
+            failureThreshold: 3
+            initialDelaySeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 5051
+            periodSeconds: 15
+            failureThreshold: 3
+            initialDelaySeconds: 30
+          resources:
+            requests:
+              cpu: 50m
+  selector:
+    matchLabels:
+      deployment: api.gateway

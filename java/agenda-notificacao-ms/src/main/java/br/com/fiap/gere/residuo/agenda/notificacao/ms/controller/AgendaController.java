@@ -9,7 +9,9 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,8 +34,13 @@ public class AgendaController {
     }
 
     @GetMapping()
-    @ResponseStatus(HttpStatus.OK)
-    public Page<AgendaExibicaoDto> listarTodasAgendas(Pageable paginacao) {
-        return agendaService.listarTodasAgendas(paginacao);
+    public ResponseEntity<Page<AgendaExibicaoDto>> listarTodasAgendas(Pageable paginacao) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "public, max-age=600, must-revalidate");
+        Page<AgendaExibicaoDto> agendas = agendaService.listarTodasAgendas(paginacao);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers)
+                .body(agendas);
     }
+
 }

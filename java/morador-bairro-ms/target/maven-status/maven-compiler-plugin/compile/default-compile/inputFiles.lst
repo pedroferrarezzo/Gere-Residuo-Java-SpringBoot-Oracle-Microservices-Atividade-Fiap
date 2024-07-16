@@ -1,21 +1,21 @@
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\model\Bairro.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\service\BairroService.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\exception\BairroNaoEncontradoException.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\model\Morador.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\repository\BairroRepository.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\service\MoradorService.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\advice\ApplicationExceptionHandler.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\bairro\BairroCadastroDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\bairro\BairroAtualizarDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\model\StatusDisponivel.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\morador\MoradorExibicaoDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\controller\MoradorController.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\morador\MoradorAtualizarDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\controller\BairroController.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\bairro\BairroDispExibicaoDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\bairro\BairroExibicaoDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\morador\MoradorCadastroDto.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\MsApplication.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\exception\MoradorNaoEncontradoException.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\exception\BairroDmlException.java
-C:\Users\pedrof\OneDrive\Documentos\FIAP - DEV\ATIVIDADES\Segundo Ano\Fase 3\Cap 8\entrega_final\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\repository\MoradorRepository.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\bairro\BairroAtualizarDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\repository\BairroRepository.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\bairro\BairroExibicaoDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\MsApplication.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\model\Bairro.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\bairro\BairroCadastroDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\morador\MoradorExibicaoDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\model\Morador.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\model\StatusDisponivel.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\morador\MoradorCadastroDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\controller\BairroController.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\exception\BairroDmlException.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\repository\MoradorRepository.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\exception\MoradorNaoEncontradoException.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\morador\MoradorAtualizarDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\service\BairroService.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\controller\MoradorController.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\dto\bairro\BairroDispExibicaoDto.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\exception\BairroNaoEncontradoException.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\advice\ApplicationExceptionHandler.java
+D:\DEV\Projetos\Java\gere-residuo-kubernetes\java\morador-bairro-ms\src\main\java\br\com\fiap\gere\residuo\morador\bairro\ms\service\MoradorService.java

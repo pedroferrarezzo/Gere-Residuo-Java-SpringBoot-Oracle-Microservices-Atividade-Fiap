@@ -12,7 +12,9 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,9 +28,13 @@ public class NotificacaoController {
     private EmailService emailService;
 
     @GetMapping()
-    @ResponseStatus(HttpStatus.OK)
-    public Page<NotificacaoExibicaoDto> listarTodasNotificacoes(Pageable paginacao) {
-        return notificacaoService.listarTodasNotificacoes(paginacao);
+    public ResponseEntity<Page<NotificacaoExibicaoDto>> listarTodasNotificacoes(Pageable paginacao) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "public, max-age=600, must-revalidate");
+        Page<NotificacaoExibicaoDto> notificacoes = notificacaoService.listarTodasNotificacoes(paginacao);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers)
+                .body(notificacoes);
     }
 
     @PostMapping(value = "/dispararNotificacoes", params = "idAgenda")

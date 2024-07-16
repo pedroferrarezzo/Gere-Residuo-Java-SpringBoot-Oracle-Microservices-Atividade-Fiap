@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-discovery-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: service-discovery-template
+      labels:
+        deployment: service.discovery
+    spec:
+      containers:
+        - name: service-discovery-container
+          image: ferrarezzodev/gere-residuo-kubernetes:service.discovery
+          ports:
+            - containerPort: 5050
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 20
+          resources:
+            requests:
+              cpu: 75m
+  selector:
+    matchLabels:
+      deployment: service.discovery
