@@ -75,9 +75,9 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
   - `minReplicas: 1`
   - `maxReplicas: 10`
   - Realiza health checks na rota `/health` via requisições HTTP GET.
-- **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods.
 - **Conexões**: Utiliza um serviço do tipo `LoadBalancer` para comunicação externa.
-- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU/memória.
+- **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (5x Pods).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
 
 ### service.discovery
 - **Função**: Serviço de descoberta para localização e comunicação entre diferentes serviços no cluster.
@@ -87,7 +87,7 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
   - Realiza health checks na rota `/health` via requisições HTTP GET.
 - **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
 - **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
-- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de (50% de 50milicores).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 50milicores).
 
 ### morador.bairro.ms
 - **Função**: Serviço específico para monitoramento de moradores por bairro.
