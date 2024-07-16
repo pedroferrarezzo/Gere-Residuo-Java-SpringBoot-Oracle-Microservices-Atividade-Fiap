@@ -10,7 +10,9 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -45,22 +47,33 @@ public class CaminhaoController {
     }
 
     @GetMapping()
-    @ResponseStatus(HttpStatus.OK)
-    public Page<Caminhao> listarTodosMotoristas(Pageable paginacao) {
-        return caminhaoService.listarTodosMotoristas(paginacao);
+    public ResponseEntity<Page<Caminhao>> listarTodosMotoristas(Pageable paginacao) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "public, max-age=600, must-revalidate");
+        Page<Caminhao> motoristas = caminhaoService.listarTodosMotoristas(paginacao);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers)
+                .body(motoristas);
     }
 
     @GetMapping(params = "id")
-    @ResponseStatus(HttpStatus.OK)
-    public Caminhao buscarMotoristaPorId(@RequestParam(name = "id") Long id) {
-        return caminhaoService.buscarPorId(id);
-
+    public ResponseEntity<Caminhao> buscarMotoristaPorId(@RequestParam(name = "id") Long id) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "public, max-age=600, must-revalidate");
+        Caminhao motorista = caminhaoService.buscarPorId(id);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers)
+                .body(motorista);
     }
 
     @GetMapping(value = "/retornarDisponibilidade", params = "id")
-    @ResponseStatus(HttpStatus.OK)
-    public CaminhaoDispExibicaoDto retornarDisponibilidade(@RequestParam(name = "id") Long id) {
-        return caminhaoService.retornarDisponibilidade(id);
+    public ResponseEntity<CaminhaoDispExibicaoDto> retornarDisponibilidade(@RequestParam(name = "id") Long id) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "public, max-age=600, must-revalidate");
+        CaminhaoDispExibicaoDto disponibilidade = caminhaoService.retornarDisponibilidade(id);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers)
+                .body(disponibilidade);
     }
 
     @DeleteMapping(params = "id")

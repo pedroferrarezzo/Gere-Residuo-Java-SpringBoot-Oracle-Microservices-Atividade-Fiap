@@ -12,7 +12,9 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,27 +56,43 @@ public class BairroController {
     }
 
     @GetMapping()
-    @ResponseStatus(HttpStatus.OK)
-    public Page<BairroExibicaoDto> listarTodosBairros(Pageable paginacao) {
-        return bairroService.listarTodosBairross(paginacao);
+    public ResponseEntity<Page<BairroExibicaoDto>> listarTodosBairros(Pageable paginacao) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "public, max-age=600, must-revalidate");
+        Page<BairroExibicaoDto> bairros = bairroService.listarTodosBairross(paginacao);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers)
+                .body(bairros);
     }
 
     @GetMapping(params = "id")
-    @ResponseStatus(HttpStatus.OK)
-    public BairroExibicaoDto buscarBairroPorId(@RequestParam(name = "id") Long id) {
-        return bairroService.buscarPorId(id);
+    public ResponseEntity<BairroExibicaoDto> buscarBairroPorId(@RequestParam(name = "id") Long id) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "public, max-age=600, must-revalidate");
+        BairroExibicaoDto bairro = bairroService.buscarPorId(id);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers)
+                .body(bairro);
     }
 
     @GetMapping(value = "/buscarMoradores", params = "idBairro")
-    @ResponseStatus(HttpStatus.OK)
-    public Page<MoradorExibicaoDto> buscarMoradores(@RequestParam(name = "idBairro") Long id, Pageable paginacao) {
-        return bairroService.buscarMoradores(id, paginacao);
+    public ResponseEntity<Page<MoradorExibicaoDto>> buscarMoradores(@RequestParam(name = "idBairro") Long id, Pageable paginacao) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "public, max-age=600, must-revalidate");
+        Page<MoradorExibicaoDto> moradores = bairroService.buscarMoradores(id, paginacao);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers)
+                .body(moradores);
     }
 
     @GetMapping(value = "/retornarDisponibilidade", params = "id")
-    @ResponseStatus(HttpStatus.OK)
-    public BairroDispExibicaoDto retornarDisponibilidade(@RequestParam(name = "id") Long id) {
-        return bairroService.retornarDisponibilidade(id);
+    public ResponseEntity<BairroDispExibicaoDto> retornarDisponibilidade(@RequestParam(name = "id") Long id) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "public, max-age=600, must-revalidate");
+        BairroDispExibicaoDto disponibilidade = bairroService.retornarDisponibilidade(id);
+        return ResponseEntity.status(HttpStatus.OK)
+                .headers(headers)
+                .body(disponibilidade);
     }
 
     @DeleteMapping(params = "id")

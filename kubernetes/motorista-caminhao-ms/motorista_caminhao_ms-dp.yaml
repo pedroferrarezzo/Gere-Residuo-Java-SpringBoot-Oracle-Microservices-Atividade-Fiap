@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: motorista-caminhao-ms-container
-          image: ferrarezzodev/gere-residuo-kubernetes:motorista.caminhao.ms.fix.stable
+          image: ferrarezzodev/gere-residuo-kubernetes:motorista.caminhao.ms.fix.stable.cachecontrol
           # Porta atribuida dinamicamente pelo Eureka
 #          ports:
 #            - containerPort: 5050
