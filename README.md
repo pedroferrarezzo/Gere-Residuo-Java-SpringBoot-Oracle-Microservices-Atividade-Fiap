@@ -1,142 +1,159 @@
 # ATIVIDADE
+
 **Tema escolhido:** Gestão de Resíduos - Notificação aos moradores sobre dias de coleta e separação adequada de resíduos.
 
 "Pedimos a você e a seu grupo que reflitam o tema escolhido, e qual o mínimo para criar um produto viável do tema selecionado. Com isso, a sua tarefa consiste em implementar uma série (mínimo 4) endpoints RESTful que ofereçam funcionalidades relevantes para o projeto. Revisitando o exemplo da coleta seletiva de lixo, você poderia considerar endpoints como:
 
-- GET /coleta-de-lixo: Para recuperar informações sobre a coleta de lixo;
-- POST /agendamento-de-coleta: Para agendar uma nova coleta;
-- PUT /agendamento-de-coleta/{id}: Para atualizar um agendamento existente;
-- DELETE /agendamento-de-coleta/{id}: Para cancelar um agendamento de coleta.
+- **GET /coleta-de-lixo**: Para recuperar informações sobre a coleta de lixo;
+- **POST /agendamento-de-coleta**: Para agendar uma nova coleta;
+- **PUT /agendamento-de-coleta/{id}**: Para atualizar um agendamento existente;
+- **DELETE /agendamento-de-coleta/{id}**: Para cancelar um agendamento de coleta.
 
 Com o seu aprofundamento nos conceitos de desenvolvimento com Java e Spring Boot, é mandatório que você sugira e implemente mais itens na entrega, indo além dos endpoints. Desde a configuração inicial até técnicas avançadas de validação e tratamento de exceções, é essencial aplicar os requisitos de segurança nos endpoints pertinentes utilizando o Spring Security.
 
 Além disso, é necessário que a solução esteja integrada ao banco de dados, especialmente no caso do Oracle, e que o conceito de migrações seja implementado para garantir uma gestão eficiente e escalável do esquema de banco de dados ao longo do tempo. Explore também a integração com contêineres Docker, entregando as configurações para execução do projeto estejam devidamente documentadas e prontas para implantação em ambientes diversos."
 
 # TECNOLOGIAS UTILIZADAS
-- Java 21;
-- Spring Framework;
-  - Spring Data JPA;
-  - Spring Web MVC;
-  - Spring Security.
-- Hibernate ORM;
-- Maven;
-- Service Discovery - Netflix Eureka;
-- API Gateway - Spring Cloud Gateway.
+
+- Java 21
+- Spring Framework:
+  - Spring Data JPA
+  - Spring Web MVC
+  - Spring Security
+- Hibernate ORM
+- Maven
+- Service Discovery - Netflix Eureka
+- API Gateway - Spring Cloud Gateway
 
 # BOAS PRÁTICAS E DESIGN PATTERNS UTILIZADOS
-- Data Transfer Objects - DTO;
-- Services;
-- Repositories;
-- MVC - Model, View e Controller;
-- Global Exception Handler;
-- Exceptions customizadas de acordo com as regras de negócio.
+
+- Data Transfer Objects (DTO)
+- Services
+- Repositories
+- MVC (Model, View e Controller)
+- Global Exception Handler
+- Exceptions customizadas de acordo com as regras de negócio
 
 # MER
+
 ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/5e487da1-c3e1-4c64-af08-ff58bb646ace)
 
 # VISÃO GERAL - ENDPOINTS E MICROSSERVIÇOS
+
 ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/d32f2da3-99e9-4dbe-a69c-2656e048a2f5)
 
 # INTEGRAÇÃO - SERVIDOR SMTP
-Para de fato atender a ideia de “notificação aos moradores” do tema escolhido, o endpoint “disparar notificações” faz uso de um servidor de SMTP gratuito chamado MailTrap. Ao acionar o endpoint passando o id de uma agenda aberta, um email será enviado para cada registro da tabela T_NOTIFICACAO referente ao id da agenda, em seguida o registro é excluído. Como boa prática, o método de envio de e-mail foi marcado como @Async.
+
+Para de fato atender a ideia de “notificação aos moradores” do tema escolhido, o endpoint “disparar notificações” faz uso de um servidor de SMTP gratuito chamado MailTrap. Ao acionar o endpoint passando o id de uma agenda aberta, um email será enviado para cada registro da tabela `T_NOTIFICACAO` referente ao id da agenda, em seguida o registro é excluído. Como boa prática, o método de envio de e-mail foi marcado como `@Async`.
+
 ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/ed3191df-250e-4404-aa41-117dbef348ae)
-  
+
 # DETALHES DE IMPLEMENTAÇÃO - SPRING SECURITY
-- O serviço escolhido para implementação do Spring Security foi o API Gateway (visto que é ele quem intercepta todas as requisições);
-- Ao decorrer da fase, foi ensinado a implementação do Spring Security com Spring Web MVC. Levando em consideração que o API Gateway utiliza Spring WebFlux, o desenvolvimento se deu baseado em artigos e documentações oficias (Sujeito a melhorias);
-- <p>Lógica da Security Chain;</p>
+
+- O serviço escolhido para implementação do Spring Security foi o API Gateway (visto que é ele quem intercepta todas as requisições).
+- Ao decorrer da fase, foi ensinado a implementação do Spring Security com Spring Web MVC. Levando em consideração que o API Gateway utiliza Spring WebFlux, o desenvolvimento se deu baseado em artigos e documentações oficiais (sujeito a melhorias).
+- **Lógica da Security Chain:**
 
   ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/e2a83ab7-29e4-4bed-a184-b2ab5a269e6c)
-  
-- <p>Anatomia de um Token JWT gerado;</p>
+
+- **Anatomia de um Token JWT gerado:**
 
   ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/4bb39987-ca60-4ad2-93d5-e8fec98d7db0)
-  
+
 - A secret JWT deve ter mais de 256 bits, caso contrário, uma exception será lançada.
 
 # DIAGRAMA DE ARQUITETURA - KUBERNETES (AZURE KUBERNETES SERVICE) + AZURE FRONT DOOR
+
 ![kubernetes-desing](https://github.com/user-attachments/assets/41ad4e95-a4e2-43d7-8877-fb121e2077c5)
 
 # DETALHES DE IMPLEMENTAÇÃO - KUBERNETES (AZURE KUBERNETES SERVICE) + AZURE FRONT DOOR
 
 ## Azure Front Door
+
 - **Função**: Atua como um serviço global de balanceamento de carga, distribuindo o tráfego de rede de forma eficiente.
 - **Configuração**: Recebe requisições HTTP GET e roteia para o serviço de backend apropriado, gerenciando o tráfego e garantindo alta disponibilidade e baixa latência.
 - **Especificações**:
-  - `pricingTier`: Azure Front Door Standard
-  - `customDomain`: ferrarezzo.com.br (Alias Record)
-  - `Location`: Global
-  - `healthProbe`: /actuator/health (GET)
-  - `origin`: Public IP Address (Service LoadBalancer)
+  - pricingTier: Azure Front Door Standard
+  - customDomain: ferrarezzo.com.br (Alias Record)
+  - Location: Global
+  - healthProbe: `/actuator/health` (GET)
+  - origin: Public IP Address (Service LoadBalancer)
 
 ## Azure Kubernetes Service (AKS)
+
 - **Função**: Plataforma gerenciada de orquestração de contêineres baseada no Kubernetes, onde todos os serviços estão hospedados.
 - **Configuração**: Dentro do AKS, diversos serviços e componentes estão configurados com diferentes tipos de serviços e réplicas.
 - **Especificações**:
-  - `nodePools`: 1
-    - `targetNodes`: 2
-    - `OS`: Ubuntu Linux
-  - `privateCluster`: True
-    
+  - nodePools: 1
+    - targetNodes: 2
+    - OS: Ubuntu Linux
+  - privateCluster: True
+
 ## RECURSOS DO AKS
 
 ### api.gateway
+
 - **Função**: Gateway de API que gerencia e roteia requisições para diferentes serviços.
 - **Configuração**:
-  - `minReplicas: 1`
-  - `maxReplicas: 10`
-  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na rota `/health` via requisições HTTP GET.
-- **Conexões**: Utiliza um serviço do tipo `LoadBalancer` para comunicação interna e externa.
-- **Secrets**: Utiliza `Secrets` para o armazenamento de dados sensíveis - consumido via variável de ambiente.
+  - minReplicas: 1
+  - maxReplicas: 10
+  - Realiza health checks (LivenessProbe e ReadinessProbe) na rota `/health` via requisições HTTP GET.
+- **Conexões**: Utiliza um serviço do tipo LoadBalancer para comunicação interna e externa.
+- **Secrets**: Utiliza Secrets para o armazenamento de dados sensíveis, consumido via variável de ambiente.
 - **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (5x Pods).
-- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 50milicores).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 50 milicores).
 
 ### service.discovery
+
 - **Função**: Serviço de descoberta para localização e comunicação entre diferentes serviços no cluster.
 - **Configuração**:
-  - `minReplicas: 1`
-  - `maxReplicas: 10`
-  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na rota `/health` via requisições HTTP GET.
-- **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
+  - minReplicas: 1
+  - maxReplicas: 10
+  - Realiza health checks (LivenessProbe e ReadinessProbe) na rota `/health` via requisições HTTP GET.
+- **Conexões**: Utiliza um serviço do tipo ClusterIP para comunicação interna.
 - **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
-- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75 milicores).
 
 ### morador.bairro.ms
+
 - **Função**: Serviço específico para monitoramento de moradores por bairro.
 - **Configuração**:
-  - `minReplicas: 1`
-  - `maxReplicas: 10`
-  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na rota `/health` via requisições HTTP GET.
-- **Secrets**: Utiliza `Secrets` para o armazenamento de dados sensíveis - consumido via variável de ambiente.
+  - minReplicas: 1
+  - maxReplicas: 10
+  - Realiza health checks (LivenessProbe e ReadinessProbe) na rota `/health` via requisições HTTP GET.
+- **Secrets**: Utiliza Secrets para o armazenamento de dados sensíveis, consumido via variável de ambiente.
 - **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
-- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75 milicores).
 
 ### agenda.notificacao.ms
+
 - **Função**: Serviço de agendamento e envio de notificações.
 - **Configuração**:
-  - `minReplicas: 1`
-  - `maxReplicas: 10`
-  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na rota `/health` via requisições HTTP GET.
-- **Secrets**: Utiliza `Secrets` para o armazenamento de dados sensíveis - consumido via variável de ambiente.
+  - minReplicas: 1
+  - maxReplicas: 10
+  - Realiza health checks (LivenessProbe e ReadinessProbe) na rota `/health` via requisições HTTP GET.
+- **Secrets**: Utiliza Secrets para o armazenamento de dados sensíveis, consumido via variável de ambiente.
 - **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
-- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75 milicores).
 
 ### motorista.caminhao.ms
+
 - **Função**: Serviço específico para gerenciamento de motoristas e caminhões.
 - **Configuração**:
-  - `minReplicas: 1`
-  - `maxReplicas: 10`
-  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na rota `/health` via requisições HTTP GET.
-- **Secrets**: Utiliza `Secrets` para o armazenamento de dados sensíveis - consumido via variável de ambiente.
-- **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pod).
-- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
+  - minReplicas: 1
+  - maxReplicas: 10
+  - Realiza health checks (LivenessProbe e ReadinessProbe) na rota `/health` via requisições HTTP GET.
+- **Secrets**: Utiliza Secrets para o armazenamento de dados sensíveis, consumido via variável de ambiente.
+- **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75 milicores).
 
-## Banco de Dados Oracle
+### Banco de Dados Oracle
+
 - **Função**: Armazenamento persistente de dados.
 - **Configuração**: Utiliza uma configuração de StatefulSet no Kubernetes para garantir a persistência dos dados do diretório `oradata`.
-  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na porta 1521 utilizando TCP Socket.
-- **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
-- **Secrets**: Utiliza `Secrets` para o armazenamento de dados sensíveis - consumido via variável de ambiente.
+  - Realiza health checks (LivenessProbe e ReadinessProbe) na porta 1521 utilizando TCP Socket.
+- **Conexões**: Utiliza um serviço do tipo ClusterIP para comunicação interna.
+- **Secrets**: Utiliza Secrets para o armazenamento de dados sensíveis, consumido via variável de ambiente.
 - **StatefulSet**: Utilizado para gerenciar a persistência e o estado dos pods (1x Pod).
 - **Persistent Volume Claim (PVC)**: Utilizado para solicitar armazenamento persistente do Storage Class (SC) configurado.
 - **Storage Class (SC)**: Define o tipo de armazenamento utilizado para os PVCs (AzureDisk).
@@ -144,30 +161,30 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
 # GANHOS DE IMPLEMENTAÇÃO - AZURE FRONT DOOR
 - Como esperado de um servidor de CDN, a depender da localidade, um diferente endereço IP é retornado na resolução do host A
   ![image](https://github.com/user-attachments/assets/4898d8d2-b4be-40a5-8626-3f8fa387f0f2)
-- Resultado inicial - ainda sem caching (`latência de ≅ 135ms`)
+- Resultado inicial - ainda sem caching (latência de ≅ 135ms)
   ![image](https://github.com/user-attachments/assets/ce1e94f3-7196-4e5b-8c37-8fc0bded64b2)
-- Resultado final - com caching (`latência de ≅ 30ms, ganho de ≅ -105ms`)
+- Resultado final - com caching (latência de ≅ 30ms, ganho de ≅ -105ms)
   ![image](https://github.com/user-attachments/assets/b8623ded-c974-4aaf-a5e2-ed6e9c6f51f2)
 
 # DETALHES DE IMPLEMENTAÇÃO - DOCKER
 - A API foi totalmente conteinerizada:
   - Integrando-a com um banco de dados OracleXE em container e outros disponibilizados por terceiros no Docker Hub;
   - Aplicando o conceito de variáveis de ambiente (para a secret JWT);
-  - Construindo todas as imagens e subindo-as para um repositório no Docker Hub (ferrarezzodev/fiap - https://hub.docker.com/repository/docker/ferrarezzodev/fiap/general);
+  - Construindo todas as imagens e subindo-as para um repositório no Docker Hub (ferrarezzodev/fiap - [Docker Hub](https://hub.docker.com/repository/docker/ferrarezzodev/fiap/general));
   - Construindo um docker-compose.yml para a fácil inicialização de toda a API, consumindo as imagens dos microsserviços hospedadas no Docker Hub.
-- <p>Tempo médio para inicialização de toda a API usando o docker-compose.yml (teste feito em uma VM no Azure);</p>
+- Tempo médio para inicialização de toda a API usando o docker-compose.yml (teste feito em uma VM no Azure);
 
   ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/bd05c9da-6d94-4edd-bf3c-b553f153c4cf)
 
     - VM utilizada para os testes: Standard D2s v3 (2 vcpus, 8 GiB memory) - Ubuntu 20.04.6 LTS;
     - oracledb – uma validação de “healthy” foi aplicada utilizando um script shell disponibilizado pela própria imagem para validar que de fato o banco está ON;
-    - <p>oracleclient – imagem com o sqlplus instalado, utilizada para validar se as tabelas T_MOTORISTA, T_CAMINHAO, T_AGENDA e T_MORADOR já foram efetivamente criadas pelo flyway, nos microsserviços morador.bairro.ms e motorista.caminhao.ms. Isto é necessário          pois o flyway no microsserviço agenda.notificacao.ms irá criar chaves estrangeiras com essas tabelas – que inclusive estão em schemas diferentes. Para tal, verificar se o script abaixo possui permissões de execução o suficiente para que o docker engine possa       usá-lo;</p>
-    
+    - oracleclient – imagem com o sqlplus instalado, utilizada para validar se as tabelas T_MOTORISTA, T_CAMINHAO, T_AGENDA e T_MORADOR já foram efetivamente criadas pelo flyway, nos microsserviços morador.bairro.ms e motorista.caminhao.ms. Isto é necessário pois o flyway no microsserviço agenda.notificacao.ms irá criar chaves estrangeiras com essas tabelas – que inclusive estão em schemas diferentes. Para tal, verificar se o script abaixo possui permissões de execução o suficiente para que o docker engine possa usá-lo;
+
       ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/934caa35-bafd-46ef-a5b8-090755a6dc8e)
       
     - Uma rede exclusiva foi criada para todas as APIs;
     - Um volume foi criado para persistência do diretório ORADATA (Oracle).
-- <p>Mapeamento de portas;</p>
+- Mapeamento de portas;
 
   ![image](https://github.com/pedroferrarezzo/Gere-Residuo-Java-SpringBoot-Oracle-Atividade-Fiap/assets/124400471/ec6182af-30f8-49e7-9fda-95e8f46293a6)
 
@@ -178,7 +195,3 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
 - Todos os arquivos utilizados para conteinerizar a API se encontram na pasta “docker”;
 - Todo o código fonte da API se encontra na pasta “java”;
 - Os arquivos SQL DDL utilizados pelo flyway se encontram nos respectivos diretórios de cada projeto de cada microsserviço (db.migration).
-
- 
-
-
