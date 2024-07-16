@@ -57,45 +57,57 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
 # DIAGRAMA DE ARQUITETURA - KUBERNETES (AZURE KUBERNETES SERVICE) + AZURE FRONT DOOR
 ![kubernetes-desing](https://github.com/user-attachments/assets/41ad4e95-a4e2-43d7-8877-fb121e2077c5)
 
-# Detalhes de Implementação
+# DETALHES DE IMPLEMENTAÇÃO - KUBERNETES (AZURE KUBERNETES SERVICE) + AZURE FRONT DOOR
 
 ## Azure Front Door
 - **Função**: Atua como um serviço global de balanceamento de carga, distribuindo o tráfego de rede de forma eficiente.
 - **Configuração**: Recebe requisições HTTP GET e roteia para o serviço de backend apropriado, gerenciando o tráfego e garantindo alta disponibilidade e baixa latência.
+- **Especificações**:
+  - `pricingTier`: Azure Front Door Standard
+  - `customDomain`: ferrarezzo.com.br (Alias Record)
+  - `Location`: Global
+  - `healthProbe`: /actuator/health (GET)
+  - `origin`: Public IP Address (Service LoadBalancer)
 
 ## Azure Kubernetes Service (AKS)
 - **Função**: Plataforma gerenciada de orquestração de contêineres baseada no Kubernetes, onde todos os serviços estão hospedados.
 - **Configuração**: Dentro do AKS, diversos serviços e componentes estão configurados com diferentes tipos de serviços e réplicas.
-
-## Componentes e Serviços dentro do AKS
+- **Especificações**:
+  - `nodePools`: 1
+    - `targetNodes`: 2
+    - `OS`: Ubuntu Linux
+  - `privateCluster`: True
+    
+## RECURSOS DO AKS
 
 ### api.gateway
 - **Função**: Gateway de API que gerencia e roteia requisições para diferentes serviços.
 - **Configuração**:
   - `minReplicas: 1`
   - `maxReplicas: 10`
-  - Realiza health checks na rota `/health` via requisições HTTP GET.
-- **Conexões**: Utiliza um serviço do tipo `LoadBalancer` para comunicação externa.
+  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na rota `/health` via requisições HTTP GET.
+- **Conexões**: Utiliza um serviço do tipo `LoadBalancer` para comunicação interna e externa.
+- **Secrets**: Utiliza `Secrets` para o armazenamento de dados sensíveis - consumido via variável de ambiente.
 - **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (5x Pods).
-- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 50milicores).
 
 ### service.discovery
 - **Função**: Serviço de descoberta para localização e comunicação entre diferentes serviços no cluster.
 - **Configuração**:
   - `minReplicas: 1`
   - `maxReplicas: 10`
-  - Realiza health checks na rota `/health` via requisições HTTP GET.
+  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na rota `/health` via requisições HTTP GET.
 - **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
 - **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
-- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 50milicores).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
 
 ### morador.bairro.ms
 - **Função**: Serviço específico para monitoramento de moradores por bairro.
 - **Configuração**:
   - `minReplicas: 1`
   - `maxReplicas: 10`
-  - Realiza health checks na rota `/health` via requisições HTTP GET.
-- **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
+  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na rota `/health` via requisições HTTP GET.
+- **Secrets**: Utiliza `Secrets` para o armazenamento de dados sensíveis - consumido via variável de ambiente.
 - **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
 - **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
 
@@ -104,8 +116,8 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
 - **Configuração**:
   - `minReplicas: 1`
   - `maxReplicas: 10`
-  - Realiza health checks na rota `/health` via requisições HTTP GET.
-- **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
+  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na rota `/health` via requisições HTTP GET.
+- **Secrets**: Utiliza `Secrets` para o armazenamento de dados sensíveis - consumido via variável de ambiente.
 - **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
 - **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
 
@@ -114,19 +126,27 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
 - **Configuração**:
   - `minReplicas: 1`
   - `maxReplicas: 10`
-  - Realiza health checks na rota `/health` via requisições HTTP GET.
-- **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
+  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na rota `/health` via requisições HTTP GET.
+- **Secrets**: Utiliza `Secrets` para o armazenamento de dados sensíveis - consumido via variável de ambiente.
 - **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pod).
 - **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
 
 ## Banco de Dados Oracle
 - **Função**: Armazenamento persistente de dados.
 - **Configuração**: Utiliza uma configuração de StatefulSet no Kubernetes para garantir a persistência dos dados do diretório `oradata`.
-  - Serviço do tipo `ClusterIP`:
-    - Porta 1521 para TCP
+  - Realiza health checks (`LivenessProbe` e `ReadinessProbe`) na porta 1521 utilizando TCP Socket.
+- **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
+- **Secrets**: Utiliza `Secrets` para o armazenamento de dados sensíveis - consumido via variável de ambiente.
 - **StatefulSet**: Utilizado para gerenciar a persistência e o estado dos pods (1x Pod).
 - **Persistent Volume Claim (PVC)**: Utilizado para solicitar armazenamento persistente do Storage Class (SC) configurado.
 - **Storage Class (SC)**: Define o tipo de armazenamento utilizado para os PVCs (AzureDisk).
+
+# GANHOS DE IMPLEMENTAÇÃO - AZURE FRONT DOOR
+- Como esperado de um servidor de CDN, a depender da localidade, um diferente endereço IP é retornado na resolução do host A
+  ![image](https://github.com/user-attachments/assets/4898d8d2-b4be-40a5-8626-3f8fa387f0f2)
+- Resultado inicial - ainda sem caching (`latência de 135ms`)
+  
+
 
 # DETALHES DE IMPLEMENTAÇÃO - DOCKER
 - A API foi totalmente conteinerizada:
