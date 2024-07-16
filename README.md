@@ -144,9 +144,10 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
 # GANHOS DE IMPLEMENTAÇÃO - AZURE FRONT DOOR
 - Como esperado de um servidor de CDN, a depender da localidade, um diferente endereço IP é retornado na resolução do host A
   ![image](https://github.com/user-attachments/assets/4898d8d2-b4be-40a5-8626-3f8fa387f0f2)
-- Resultado inicial - ainda sem caching (`latência de 135ms`)
-  
-
+- Resultado inicial - ainda sem caching (`latência de ≅ 135ms`)
+  ![image](https://github.com/user-attachments/assets/ce1e94f3-7196-4e5b-8c37-8fc0bded64b2)
+- Resultado final - com caching (`latência de ≅ 30ms, ganho de ≅ -105ms`)
+  ![image](https://github.com/user-attachments/assets/b8623ded-c974-4aaf-a5e2-ed6e9c6f51f2)
 
 # DETALHES DE IMPLEMENTAÇÃO - DOCKER
 - A API foi totalmente conteinerizada:
