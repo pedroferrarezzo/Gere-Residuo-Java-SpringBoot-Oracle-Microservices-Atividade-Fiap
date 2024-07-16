@@ -54,6 +54,80 @@ Para de fato atender a ideia de “notificação aos moradores” do tema escolh
   
 - A secret JWT deve ter mais de 256 bits, caso contrário, uma exception será lançada.
 
+# DIAGRAMA DE ARQUITETURA - KUBERNETES (AZURE KUBERNETES SERVICE) + AZURE FRONT DOOR
+![kubernetes-desing](https://github.com/user-attachments/assets/41ad4e95-a4e2-43d7-8877-fb121e2077c5)
+
+# Detalhes de Implementação
+
+## Azure Front Door
+- **Função**: Atua como um serviço global de balanceamento de carga, distribuindo o tráfego de rede de forma eficiente.
+- **Configuração**: Recebe requisições HTTP GET e roteia para o serviço de backend apropriado, gerenciando o tráfego e garantindo alta disponibilidade e baixa latência.
+
+## Azure Kubernetes Service (AKS)
+- **Função**: Plataforma gerenciada de orquestração de contêineres baseada no Kubernetes, onde todos os serviços estão hospedados.
+- **Configuração**: Dentro do AKS, diversos serviços e componentes estão configurados com diferentes tipos de serviços e réplicas.
+
+## Componentes e Serviços dentro do AKS
+
+### api.gateway
+- **Função**: Gateway de API que gerencia e roteia requisições para diferentes serviços.
+- **Configuração**:
+  - `minReplicas: 1`
+  - `maxReplicas: 10`
+  - Realiza health checks na rota `/health` via requisições HTTP GET.
+- **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods.
+- **Conexões**: Utiliza um serviço do tipo `LoadBalancer` para comunicação externa.
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU/memória.
+
+### service.discovery
+- **Função**: Serviço de descoberta para localização e comunicação entre diferentes serviços no cluster.
+- **Configuração**:
+  - `minReplicas: 1`
+  - `maxReplicas: 10`
+  - Realiza health checks na rota `/health` via requisições HTTP GET.
+- **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
+- **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de (50% de 50milicores).
+
+### morador.bairro.ms
+- **Função**: Serviço específico para monitoramento de moradores por bairro.
+- **Configuração**:
+  - `minReplicas: 1`
+  - `maxReplicas: 10`
+  - Realiza health checks na rota `/health` via requisições HTTP GET.
+- **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
+- **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
+
+### agenda.notificacao.ms
+- **Função**: Serviço de agendamento e envio de notificações.
+- **Configuração**:
+  - `minReplicas: 1`
+  - `maxReplicas: 10`
+  - Realiza health checks na rota `/health` via requisições HTTP GET.
+- **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
+- **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pods).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
+
+### motorista.caminhao.ms
+- **Função**: Serviço específico para gerenciamento de motoristas e caminhões.
+- **Configuração**:
+  - `minReplicas: 1`
+  - `maxReplicas: 10`
+  - Realiza health checks na rota `/health` via requisições HTTP GET.
+- **Conexões**: Utiliza um serviço do tipo `ClusterIP` para comunicação interna.
+- **Deployment**: Utiliza um Deployment para gerenciar a criação e o escalonamento dos pods (3x Pod).
+- **HPA (Horizontal Pod Autoscaler)**: Configurado para autoescalar os pods entre 1 e 10 réplicas com base na utilização de CPU (50% de 75milicores).
+
+## Banco de Dados Oracle
+- **Função**: Armazenamento persistente de dados.
+- **Configuração**: Utiliza uma configuração de StatefulSet no Kubernetes para garantir a persistência dos dados do diretório `oradata`.
+  - Serviço do tipo `ClusterIP`:
+    - Porta 1521 para TCP
+- **StatefulSet**: Utilizado para gerenciar a persistência e o estado dos pods (1x Pod).
+- **Persistent Volume Claim (PVC)**: Utilizado para solicitar armazenamento persistente do Storage Class (SC) configurado.
+- **Storage Class (SC)**: Define o tipo de armazenamento utilizado para os PVCs (AzureDisk).
+
 # DETALHES DE IMPLEMENTAÇÃO - DOCKER
 - A API foi totalmente conteinerizada:
   - Integrando-a com um banco de dados OracleXE em container e outros disponibilizados por terceiros no Docker Hub;
